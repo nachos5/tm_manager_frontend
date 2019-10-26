@@ -18,12 +18,12 @@ export default function Header(props: any) {
         {!context.user ? (
           <Col xs='4'>
             <div className='w-100 d-flex justify-content-end'>
-              <Link className='auth-link' to='login'>
+              <Link className='auth-link' to='/login'>
                 Login
               </Link>
             </div>
             <div className='w-100 d-flex justify-content-end'>
-              <Link className='auth-link' to='signup'>
+              <Link className='auth-link' to='/signup'>
                 Sign up
               </Link>
             </div>
@@ -31,7 +31,7 @@ export default function Header(props: any) {
         ) : (
           <Col xs='4'>
             <div className='w-100 h-100 d-flex justify-content-end align-items-center'>
-              <Link className='auth-link' to='logout'>
+              <Link className='auth-link' to='/logout'>
                 Logout
               </Link>
             </div>
