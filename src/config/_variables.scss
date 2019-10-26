@@ -1,0 +1,17 @@
+// COLORS
+$body-color: #333333;
+$white: #fff;
+$gray: #D3D1D0;
+$light-gray: #f2f2f2;
+$darken-gray: darken($gray, 10%);
+$skull-gray: #828282;
+$blue: #26A5D4;
+$darken-blue: darken($blue, 10%);
+$red: #EB5757;
+$dark-red: #c53636;
+$green: #27AE60;
+$message-success: rgba($green, .5);
+$message-error: rgba($red, .5);
+
+// HEADER
+$header-height: 60px;

@@ -1,0 +1,21 @@
+@import "../../../config/variables";
+
+.message {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+
+  &__success {
+    background-color: $message-success;
+  }
+
+  &__error {
+    background-color: $message-error;
+  }
+  
+  p {
+    margin: 0.5rem 0;
+    text-align: center;
+    width: 100%;
+  }
+}

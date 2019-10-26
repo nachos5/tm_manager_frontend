@@ -1,0 +1,26 @@
+@import '../../../config/variables.scss';
+
+// alltaf fast í miðjunni
+.loader {
+  &__bg {
+    background-color: rgba(black, .25);
+
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &__spinner {
+    width: 3rem !important;
+    height: 3rem !important;
+
+    &__container {
+      position: fixed;
+      top: 50vh;
+      left: 50vw;
+      transform: translateX(-50%);
+    }
+  }
+}

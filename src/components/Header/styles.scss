@@ -1,0 +1,19 @@
+@import "../../config/variables";
+
+#header {
+  height: $header-height;
+
+  .brand a {
+    color: black;
+    font-size: 1.5rem;
+
+    &:hover {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+
+  .auth-link {
+    color: $blue;
+  }
+}

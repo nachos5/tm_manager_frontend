@@ -1,0 +1,32 @@
+@import '../../config/variables';
+
+.super-category-box {
+  cursor: pointer;
+
+  &__container {
+    height: 250px;
+    background-color: $light-gray;
+    filter: contrast(80%);
+  }
+
+  &__title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    
+    background-color: rgba(black, .1);
+    text-align: center;
+    width: 80%;
+    padding: 4px;
+    border-radius: 5px;
+  }
+
+  &:hover {
+    .super-category-box__container {
+      filter: none;
+      box-shadow: none!important;
+      transition: .1s ease-in-out;
+    }
+  }
+}
