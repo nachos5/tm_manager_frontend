@@ -9,7 +9,10 @@ import './App.scss';
 import Routes from './Routes';
 
 // api clientinn okkar
-const uri = 'http://127.0.0.1:8000/graphql';
+const uri: string =
+  process.env.REACT_APP_API_CLIENT !== undefined
+    ? process.env.REACT_APP_API_CLIENT
+    : 'http://127.0.0.1:8000/graphql';
 const client = new ApolloClient({
   uri: uri,
   request: (operation) => {
