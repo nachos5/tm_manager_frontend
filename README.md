@@ -1,4 +1,4 @@
-*Frontend repo* - https://github.com/nachos5/tm_manager_frontend
+*Backend repo* - https://github.com/nachos5/tm_manager_backend
 
 *Trello* - https://trello.com/b/qrljEtcc/tm-manager
 
