@@ -10,6 +10,10 @@
 
 ---
 
+Búiði til .env.local file í rootinu, eina sem ég er að nota þar eins og er:
+
+REACT_APP_PAGINATE = 20
+
 Þurfið að runa backend servernum (Django) og þessum (React) development server til að þetta virki.
 
 Eina sem er í rauninni nýtt síðan úr vefforritun 2 er graphql dótið, react-apollo er notað til að tengjast við API-inn og framkvæma queries. Tékkiði bara componentana sem ég er búinn að setja upp. Skilgreini query-in í queries.tsx file-um og svo nota ég useQuery og useMutation hookana til að runa þeim.
