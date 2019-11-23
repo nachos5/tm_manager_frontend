@@ -18,6 +18,14 @@ export const SUPER_CATEGORY_QUERY = gql`
     superCategory(id: $id) {
       id
       name
+      subCategories {
+        edges {
+          node {
+            id
+            name
+          }
+        }
+      }
     }
   }
 `;

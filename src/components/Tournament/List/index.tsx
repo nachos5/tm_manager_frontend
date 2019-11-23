@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Table, Button } from 'react-bootstrap';
 
-import { PUBLIC_TOURNAMENTS_LIST } from './queries';
-import { Tournament } from './types';
+import { PUBLIC_TOURNAMENTS_LIST } from '../queries';
+import { Tournament } from '../types';
 
-import Loader from '../../components/Utils/Loader';
-import QueryError from '../../components/Utils/QueryError';
+import Loader from '../../Utils/Loader';
+import QueryError from '../../Utils/QueryError';
 import TournamentListRow from './listrow';
 
 const paginate: number =
@@ -15,14 +15,15 @@ const paginate: number =
     : 20;
 
 interface Props {
-  nameFilter: string;
   superCategory: number;
+  nameFilter: string;
+  statusFilter: string;
+  categoryFilter: string;
 }
 
 export default function TournamentList(props: Props) {
-  const { superCategory, nameFilter } = props;
+  const { superCategory, nameFilter, statusFilter, categoryFilter } = props;
   const [currCount, setCurrCount] = useState(paginate);
-
   const { loading, error, data, fetchMore } = useQuery(
     PUBLIC_TOURNAMENTS_LIST,
     {
@@ -30,7 +31,9 @@ export default function TournamentList(props: Props) {
         first: paginate,
         after: '',
         superCategory,
-        name: nameFilter
+        name: nameFilter,
+        statuses: statusFilter,
+        categories: categoryFilter
       }
     }
   );
@@ -80,9 +83,11 @@ export default function TournamentList(props: Props) {
 
   return (
     <>
+      {/*
       <p>
         Showing {currCount} out of {totalCount} tournaments
       </p>
+      */}
       <Table striped bordered hover responsive>
         <thead>
           <tr>

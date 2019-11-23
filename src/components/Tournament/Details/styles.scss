@@ -1,0 +1,28 @@
+@import '../../../config/variables';
+
+#tournament {
+  &-attributes {
+    li {
+      margin: 1rem 0;
+    }
+  }
+  
+  &-userlist {
+    max-height: 250px;
+    overflow-y: scroll;
+
+    li {
+      &:nth-child(odd) {
+        background-color: $light-gray;
+      }
+    }
+  }
+}
+
+.tournament {
+  &-title {
+    font-size: 2rem;
+    border-bottom: 1px solid $light-gray;
+    margin: auto 0;
+  }
+}

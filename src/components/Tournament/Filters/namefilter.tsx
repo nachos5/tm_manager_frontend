@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Dispatch } from 'react';
 // @ts-ignore
 import { DelayInput } from 'react-delay-input';
 
 interface Props {
-  setNameFilter: any;
+  setNameFilter: Dispatch<string>;
 }
 
 export default function NameFilter(props: Props) {
@@ -12,10 +12,12 @@ export default function NameFilter(props: Props) {
   return (
     <div>
       <DelayInput
-        className='form-control w-100 my-2'
+        className='form-control w-100'
         delayTimeout={500}
         placeholder='filter by name'
-        onChange={(e: any) => setNameFilter(e.target.value)}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setNameFilter(e.target.value)
+        }
       />
     </div>
   );

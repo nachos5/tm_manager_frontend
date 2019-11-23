@@ -42,12 +42,16 @@ export const PUBLIC_TOURNAMENTS_LIST = gql`
     $after: String
     $superCategory: Float
     $name: String
+    $statuses: String
+    $categories: String
   ) {
     tournaments(
       first: $first
       after: $after
       superCategory: $superCategory
       name_Icontains: $name
+      status_In: $statuses
+      category_Name_In: $categories
     ) {
       pageInfo {
         endCursor
@@ -75,5 +79,11 @@ export const PUBLIC_TOURNAMENTS_LIST = gql`
         }
       }
     }
+  }
+`;
+
+export const TOURNAMENT_STATUSES_QUERY = gql`
+  query {
+    tournamentStatuses
   }
 `;
