@@ -1,5 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
+import { Col, Row } from 'react-bootstrap';
 
 import { TOURNAMENT_QUERY } from '../queries';
 
@@ -9,9 +10,10 @@ import QueryError from '../../Utils/QueryError';
 import TournamentAttributes from './attributes';
 import UserList from './userlist';
 import TournamentBracket from './bracket';
+import ToggleUser from './toggleuser';
+import SeedBracket from './seedbracket';
 
 import './styles.scss';
-import { Col, Row } from 'react-bootstrap';
 
 interface Props {
   id: number;
@@ -39,6 +41,10 @@ export default function Tournament(props: any) {
         <Col xs='6'>
           <p className='tournament-title'>Tournament Information:</p>
           <TournamentAttributes tournament={tournament} />
+          <ToggleUser
+            tournamentId={id}
+            userIsRegistered={tournament.userIsRegistered}
+          />
         </Col>
         <Col xs='6'>
           <p className='tournament-title'>Registered Users:</p>
@@ -46,7 +52,10 @@ export default function Tournament(props: any) {
         </Col>
       </Row>
       <hr />
-      <TournamentBracket />
+      {tournament.canEdit && tournament.statusDisplay === 'Open' ? (
+        <SeedBracket id={id} />
+      ) : null}
+      <TournamentBracket bracket={tournament.matchBracket} />
     </div>
   );
 }

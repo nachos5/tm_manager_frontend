@@ -1,5 +1,6 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import { Tournament } from '../types';
@@ -14,7 +15,7 @@ export default function TournamentListRow(props: Props) {
   const idInt = extractIntFromId(tournament.node.id);
   const history = useHistory();
 
-  function handleClick() {
+  function handleClick(e: any) {
     history.push(`/tournament/${idInt}`);
   }
 
@@ -31,7 +32,9 @@ export default function TournamentListRow(props: Props) {
       <td>{tournament.node.category.name}</td>
       <td>{tournament.node.name}</td>
       <td>{tournament.node.creator.username}</td>
-      <td>{tournament.node.statusDisplay}</td>
+      <td className='d-flex justify-content-between'>
+        {tournament.node.statusDisplay}
+      </td>
       <td
         className={slotsClass}
       >{`${tournament.node.registeredUsers.totalCount}/${tournament.node.slots}`}</td>

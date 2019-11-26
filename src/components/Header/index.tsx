@@ -29,13 +29,15 @@ export default function Header(props: any) {
             </div>
           </Col>
         ) : (
-          <Col xs='4'>
-            <div className='w-100 h-100 d-flex justify-content-end align-items-center'>
-              <Link className='auth-link' to='/logout'>
-                Logout
-              </Link>
-            </div>
-          </Col>
+          <>
+            <Col xs='4'>
+              <div className='w-100 h-100 d-flex justify-content-end align-items-center'>
+                <Link className='auth-link' to='/logout'>
+                  Logout
+                </Link>
+              </div>
+            </Col>
+          </>
         )}
       </Row>
     </Navbar>

@@ -32,6 +32,12 @@ export const TOURNAMENT_QUERY = gql`
       }
       private
       statusDisplay
+      matchBracket
+      userIsRegistered
+      location
+      date
+      time
+      canEdit
     }
   }
 `;
@@ -85,5 +91,52 @@ export const PUBLIC_TOURNAMENTS_LIST = gql`
 export const TOURNAMENT_STATUSES_QUERY = gql`
   query {
     tournamentStatuses
+  }
+`;
+
+export const TOGGLE_USER_TOURNAMENT_MUTATION = gql`
+  mutation Toggle($id: ID!) {
+    tournamentToggleRegisteredUser(input: { id: $id }) {
+      clientMutationId
+      tournament {
+        registeredUsers {
+          edges {
+            node {
+              id
+              username
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const TOURNAMENT_CREATE_MUTATION = gql`
+  mutation TournamentCreate($input: TournamentCreateMutationInput!) {
+    tournamentCreate(input: $input) {
+      clientMutationId
+      errors {
+        field
+        messages
+      }
+      tournament {
+        id
+        name
+        category {
+          superCategory {
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+export const TOURNAMENT_SEED_BRACKET_MUTATION = gql`
+  mutation SeedBracket($id: ID!) {
+    tournamentCreateInitialMatchups(input: { id: $id }) {
+      clientMutationId
+    }
   }
 `;

@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { extractIntFromId } from '../../../config/utils';
+import { Button } from 'react-bootstrap';
 
 interface Props {
   tournament: any;
@@ -24,10 +25,20 @@ export default function TournamentAttributes(props: Props) {
         <b>Category</b>: {tournament.category.name}
       </li>
       <li>
+        <b>Location</b>: {tournament.location}
+      </li>
+      <li>
+        <b>Date</b>: {tournament.date}
+      </li>
+      <li>
+        <b>Time</b>: {tournament.time}
+      </li>
+      <li>
         <b>Private</b>: {tournament.private.toString()}
       </li>
-      <li className='text-lowercase'>
-        <b>Status</b>: {tournament.statusDisplay}
+      <li>
+        <b>Status</b>:{' '}
+        <span className='text-lowercase'>{tournament.statusDisplay}</span>
       </li>
     </ul>
   );

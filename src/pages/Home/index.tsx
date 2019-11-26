@@ -10,7 +10,11 @@ import Loader from '../../components/Utils/Loader';
 import QueryError from '../../components/Utils/QueryError';
 import SuperCategoryBox from '../../components/Category/superbox';
 
-export default function Home(props: any) {
+interface Props {
+  tournamentFormRedirect?: boolean;
+}
+
+export default function Home(props: Props) {
   const { loading, error, data } = useQuery(SUPER_CATEGORIES_QUERY);
 
   if (loading) {

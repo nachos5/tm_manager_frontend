@@ -12,18 +12,28 @@ import Routes from './Routes';
 const uri: string =
   process.env.REACT_APP_API_CLIENT !== undefined
     ? process.env.REACT_APP_API_CLIENT
-    : 'http://127.0.0.1:8000/graphql';
+    : 'http://127.0.0.1:8000/';
 const client = new ApolloClient({
   uri: uri,
   request: (operation) => {
     const token = localStorage.getItem('token');
-    // console.info(token);
     operation.setContext({
       headers: {
         authorization: token ? `JWT ${token}` : ''
       }
     });
   }
+  // onError: ({ graphQLErrors, networkError }) => {
+  //   if (graphQLErrors) {
+  //     console.error(graphQLErrors);
+  //   }
+  //   // logga út
+  //   if (networkError) {
+  //     localStorage.removeItem('token');
+  //     // @ts-ignore
+  //     window.location = '/';
+  //   }
+  // }
 });
 
 function App() {

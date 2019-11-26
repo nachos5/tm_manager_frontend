@@ -12,6 +12,8 @@ import Logout from './pages/Authentication/Logout';
 import Home from './pages/Home/index';
 import TournamentPage from './pages/Tournament';
 import TournamentSuperCategoryPage from './pages/Tournament/supercategory';
+import CreateNewTournamentPage from './pages/Tournament/create';
+
 import UserProfile from './pages/User';
 import NotFound from './pages/NoMatch';
 
@@ -47,6 +49,12 @@ export default function Routes(props: any) {
             path='/list/:id'
             component={TournamentSuperCategoryPage}
           />
+          <Route
+            exact
+            path='/tournament/new/:superId'
+            component={CreateNewTournamentPage}
+          />
+
           <Route exact path='/user/:id' component={UserProfile} />
 
           <Route exact path='/signup' component={SignUp} />

@@ -4,8 +4,10 @@ import { Form, Button } from 'react-bootstrap';
 
 import { SIGNUP_MUTATION } from '../mutations';
 
+import MutationFieldError from '../../Utils/MutationFieldError';
+
 export default function LoginForm(props: any) {
-  const [errors, setErrors] = useState([]);
+  const [fieldErrors, setFieldErrors] = useState([]);
 
   const [signupMutation] = useMutation(SIGNUP_MUTATION);
   let username: any;
@@ -24,7 +26,7 @@ export default function LoginForm(props: any) {
       .then((data: any) => {
         const { errors } = data.data.userCreate;
         if (errors.length > 0) {
-          setErrors(errors);
+          setFieldErrors(errors);
         } else {
           props.history.push({
             pathname: '/login',
@@ -33,13 +35,9 @@ export default function LoginForm(props: any) {
         }
       })
       .catch((error) => {
-        console.info(error);
+        console.error(error);
       });
   }
-
-  const usernameErrors: any = errors.find((x: any) => x.field === 'username');
-  const password1Errors: any = errors.find((x: any) => x.field === 'password1');
-  const password2Errors: any = errors.find((x: any) => x.field === 'password2');
 
   return (
     <Form onSubmit={submitForm}>
@@ -52,15 +50,7 @@ export default function LoginForm(props: any) {
             username = node;
           }}
         />
-        {usernameErrors !== undefined ? (
-          <>
-            {usernameErrors.messages.map((message: string, i: number) => (
-              <Form.Text key={i} className='text-danger'>
-                {message}
-              </Form.Text>
-            ))}
-          </>
-        ) : null}
+        <MutationFieldError errors={fieldErrors} field='username' />
       </Form.Group>
 
       <Form.Group controlId='password1'>
@@ -72,15 +62,7 @@ export default function LoginForm(props: any) {
             password1 = node;
           }}
         />
-        {password1Errors !== undefined ? (
-          <>
-            {password1Errors.messages.map((message: string, i: number) => (
-              <Form.Text key={i} className='text-danger'>
-                {message}
-              </Form.Text>
-            ))}
-          </>
-        ) : null}
+        <MutationFieldError errors={fieldErrors} field='password1' />
       </Form.Group>
 
       <Form.Group controlId='password2'>
@@ -92,15 +74,7 @@ export default function LoginForm(props: any) {
             password2 = node;
           }}
         />
-        {password2Errors !== undefined ? (
-          <>
-            {password2Errors.messages.map((message: string, i: number) => (
-              <Form.Text key={i} className='text-danger'>
-                {message}
-              </Form.Text>
-            ))}
-          </>
-        ) : null}
+        <MutationFieldError errors={fieldErrors} field='password2' />
       </Form.Group>
 
       <Button variant='primary' type='submit'>
