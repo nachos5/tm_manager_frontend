@@ -22,11 +22,11 @@ export const CoreContext = React.createContext(null);
 export default function Routes(props: any) {
   const { loading, error, data } = useQuery(ME_QUERY);
   let user: any;
+  console.log(loading, error, data);
 
   if (loading) {
     return <Loader />;
   }
-
   if (data.me === null || error) {
     user = null;
     // ef útrunnið token
@@ -42,24 +42,24 @@ export default function Routes(props: any) {
     <CoreContext.Provider value={coreContextValue}>
       <Router>
         <Switch>
-          <Route exact path='/' component={Home} />
-          <Route exact path='/tournament/:id' component={TournamentPage} />
+          <Route exact path="/" component={Home} />
+          <Route exact path="/tournament/:id" component={TournamentPage} />
           <Route
             exact
-            path='/list/:id'
+            path="/list/:id"
             component={TournamentSuperCategoryPage}
           />
           <Route
             exact
-            path='/tournament/new/:superId'
+            path="/tournament/new/:superId"
             component={CreateNewTournamentPage}
           />
 
-          <Route exact path='/user/:id' component={UserProfile} />
+          <Route exact path="/user/:id" component={UserProfile} />
 
-          <Route exact path='/signup' component={SignUp} />
-          <Route exact path='/login' component={Login} />
-          <Route exact path='/logout' component={Logout} />
+          <Route exact path="/signup" component={SignUp} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
 
           <Route component={NotFound} />
         </Switch>

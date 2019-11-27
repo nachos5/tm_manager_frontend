@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Card } from 'react-bootstrap';
+import Tournament from '../User/tournaments';
 import { useQuery } from '@apollo/react-hooks';
 
 import { USER_QUERY } from './queries';
@@ -29,21 +30,24 @@ export default function User(props: Props) {
   const { user } = data;
 
   return (
-    <Card
-      border='primary'
-      className={className ? className : ''}
-      style={{ width: '18rem' }}
-    >
-      <Card.Header className='text-center'>Usercard</Card.Header>
-      <Card.Body>
-        <Card.Title className='text-center'>{user.username}</Card.Title>
-        <div>
-          <ul>
-            <li>Name: {user.name ? user.name : 'no name'}</li>
-            <li>Email: {user.email ? user.email : 'no email'}</li>
-          </ul>
-        </div>
-      </Card.Body>
-    </Card>
+    <Fragment>
+      <Card
+        border="primary"
+        className={className ? className : ''}
+        style={{ width: '18rem' }}
+      >
+        <Card.Header className="text-center">Usercard</Card.Header>
+        <Card.Body>
+          <Card.Title className="text-center">{user.username}</Card.Title>
+          <div>
+            <ul>
+              <li>Name: {user.name ? user.name : user.username}</li>
+              <li>Email: {user.email ? user.email : 'no email'}</li>
+            </ul>
+          </div>
+        </Card.Body>
+      </Card>
+      <Tournament id={id} />
+    </Fragment>
   );
 }

@@ -5,14 +5,16 @@ import { Button } from 'react-bootstrap';
 import { TOGGLE_USER_TOURNAMENT_MUTATION } from '../queries';
 
 import Loader from '../../Utils/Loader';
+import { BooleanTypeAnnotation } from '@babel/types';
 
 interface Props {
   tournamentId: number;
   userIsRegistered: boolean;
+  isOpen: boolean;
 }
 
 export default function ToggleUser(props: Props) {
-  const { tournamentId, userIsRegistered } = props;
+  const { tournamentId, userIsRegistered, isOpen } = props;
   const [toggleUserMutation] = useMutation(TOGGLE_USER_TOURNAMENT_MUTATION);
   const [loading, setLoading] = useState(false);
 
@@ -33,8 +35,8 @@ export default function ToggleUser(props: Props) {
   return (
     <>
       {loading ? <Loader /> : null}
-      {localStorage.getItem('token') ? (
-        <Button variant={variant} className='mt-2' onClick={handleToggle}>
+      {localStorage.getItem('token') && isOpen ? (
+        <Button variant={variant} className="mt-2" onClick={handleToggle}>
           {userIsRegistered
             ? 'Unregister for Tournament'
             : 'Register for Tournament'}

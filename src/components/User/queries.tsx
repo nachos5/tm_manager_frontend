@@ -10,3 +10,34 @@ export const USER_QUERY = gql`
     }
   }
 `;
+
+export const USER_TOURNAMENT = gql`
+  query User($id: ID!) {
+    user(id: $id) {
+      id
+      username
+      tournaments {
+        edges {
+          node {
+            id
+            name
+            category {
+              name
+            }
+          }
+        }
+      }
+      createdTournaments {
+        edges {
+          node {
+            id
+            name
+            category {
+              name
+            }
+          }
+        }
+      }
+    }
+  }
+`;

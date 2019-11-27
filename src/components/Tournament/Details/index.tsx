@@ -34,25 +34,27 @@ export default function Tournament(props: any) {
   }
 
   const { tournament } = data;
-
   return (
     <div>
       <Row>
-        <Col xs='6'>
-          <p className='tournament-title'>Tournament Information:</p>
+        <Col xs="6">
+          <p className="tournament-title">Tournament Information:</p>
           <TournamentAttributes tournament={tournament} />
           <ToggleUser
             tournamentId={id}
             userIsRegistered={tournament.userIsRegistered}
+            isOpen={tournament.statusDisplay === 'Open'}
           />
         </Col>
-        <Col xs='6'>
-          <p className='tournament-title'>Registered Users:</p>
+        <Col xs="6">
+          <p className="tournament-title">Registered Users:</p>
           <UserList users={tournament.registeredUsers.edges} />
         </Col>
       </Row>
       <hr />
-      {tournament.canEdit && tournament.statusDisplay === 'Open' ? (
+      {tournament.canEdit &&
+      tournament.statusDisplay === 'Open' &&
+      tournament.registeredUsers.edges.length !== 0 ? (
         <SeedBracket id={id} />
       ) : null}
       <TournamentBracket bracket={tournament.matchBracket} />
