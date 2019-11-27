@@ -38,6 +38,7 @@ export const TOURNAMENT_QUERY = gql`
       date
       time
       canEdit
+      code
     }
   }
 `;
@@ -137,6 +138,35 @@ export const TOURNAMENT_SEED_BRACKET_MUTATION = gql`
   mutation SeedBracket($id: ID!) {
     tournamentCreateInitialMatchups(input: { id: $id }) {
       clientMutationId
+    }
+  }
+`;
+
+export const TOURNAMENT_CHECK_USERS = gql `
+  query Tournament($id: ID) {
+    tournament(id: $id) {
+      id
+      creator {
+        id
+      }
+      registeredUsers {
+        edges {
+          node {
+            id
+            name
+            username
+          }
+        }
+      }
+      admins {
+        edges {
+          node {
+            id
+            name
+            username
+          }
+        }
+      }
     }
   }
 `;

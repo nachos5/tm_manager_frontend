@@ -40,6 +40,8 @@ export default function CreateNewTournamentForm(props: Props) {
   let categoryNode: any;
   let nameNode: any;
   let slotsNode: any;
+  let privateNode: any;
+  let locationNode: any;
   let dateNode: any;
   let timeNode: any;
 
@@ -51,6 +53,8 @@ export default function CreateNewTournamentForm(props: Props) {
       : null;
     const name = nameNode.value ? nameNode.value : null;
     const slots = slotsNode.state.value ? slotsNode.state.value.value : null;
+    const isPrivate = privateNode.checked ? privateNode.checked : null;
+    const location = locationNode.value ? locationNode.value : null;
     const date = dateNode.value ? dateNode.value : null;
     const time = timeNode.value ? timeNode.value : null;
 
@@ -63,6 +67,8 @@ export default function CreateNewTournamentForm(props: Props) {
           category: category,
           name: name,
           slots: slots,
+          private: isPrivate,
+          location: location,
           date: date,
           time: time
         }
@@ -148,6 +154,28 @@ export default function CreateNewTournamentForm(props: Props) {
             }}
           />
           <MutationFieldError errors={fieldErrors} field='slots' />
+        </Form.Group>
+        
+        <Form.Group>
+          <Form.Check 
+            type='checkbox'
+            label='Make Private'
+            ref={(node: any) => {
+              privateNode = node;
+            }}
+          />
+        </Form.Group>
+        
+        <Form.Group>
+          <Form.Label>Location:</Form.Label>
+          <Form.Control
+            type='text'
+            required={true}
+            placeholder='Enter Tournament Location'
+            ref={(node: any) => {
+              locationNode = node;
+            }}
+          />
         </Form.Group>
 
         <Form.Group controlId='date'>
