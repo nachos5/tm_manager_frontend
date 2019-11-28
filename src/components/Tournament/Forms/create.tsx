@@ -79,12 +79,10 @@ export default function CreateNewTournamentForm(props: Props) {
         if (errors.length > 0) {
           setFieldErrors(errors);
         }
-        props.history.push({
-          pathname: `/list/${extractIntFromId(
-            data.data.tournamentCreate.tournament.category.superCategory.id
-          )}`,
-          state: { tournamentFormRedirect: true }
-        });
+        // @ts-ignore
+        window.location = `/list/${extractIntFromId(
+          data.data.tournamentCreate.tournament.category.superCategory.id
+        )}`;
       })
       .catch((error) => {
         console.error(error);
@@ -155,9 +153,9 @@ export default function CreateNewTournamentForm(props: Props) {
           />
           <MutationFieldError errors={fieldErrors} field='slots' />
         </Form.Group>
-        
+
         <Form.Group>
-          <Form.Check 
+          <Form.Check
             type='checkbox'
             label='Make Private'
             ref={(node: any) => {
@@ -165,7 +163,7 @@ export default function CreateNewTournamentForm(props: Props) {
             }}
           />
         </Form.Group>
-        
+
         <Form.Group>
           <Form.Label>Location:</Form.Label>
           <Form.Control

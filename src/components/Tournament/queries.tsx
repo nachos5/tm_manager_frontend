@@ -142,7 +142,22 @@ export const TOURNAMENT_SEED_BRACKET_MUTATION = gql`
   }
 `;
 
-export const TOURNAMENT_CHECK_USERS = gql `
+export const MATCH_COMPLETE_MUTATION = gql`
+  mutation MatchComplete($input: MatchCompleteMutationInput!) {
+    matchComplete(input: $input) {
+      clientMutationId
+      match {
+        id
+        winner {
+          id
+          username
+        }
+      }
+    }
+  }
+`;
+
+export const TOURNAMENT_CHECK_USERS = gql`
   query Tournament($id: ID) {
     tournament(id: $id) {
       id

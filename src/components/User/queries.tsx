@@ -22,6 +22,7 @@ export const USER_TOURNAMENT = gql`
             id
             name
             category {
+              id
               name
             }
           }
@@ -33,6 +34,7 @@ export const USER_TOURNAMENT = gql`
             id
             name
             category {
+              id
               name
             }
           }

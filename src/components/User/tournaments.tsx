@@ -24,7 +24,7 @@ export default function Tournament(props: Props) {
   if (loading) {
     return <Loader />;
   }
-
+  console.info(error);
   if (error) {
     return <QueryError />;
   }
