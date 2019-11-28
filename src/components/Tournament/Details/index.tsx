@@ -57,7 +57,7 @@ export default function Tournament(props: any) {
       setCodeIncorrect(true);
     }
   }
-  
+
   if (tournament.private && !isAllowed) {
     const creatorID = tournament.creator.id;
     const userID = context.user ? context.user.id : null;
@@ -66,7 +66,11 @@ export default function Tournament(props: any) {
       return t.node.id;
     });
 
-    if (userID === creatorID || tournament.canEdit || registeredIDs.includes(userID)) {
+    if (
+      userID === creatorID ||
+      tournament.canEdit ||
+      registeredIDs.includes(userID)
+    ) {
       setIsAllowed(true);
     }
 
@@ -77,13 +81,13 @@ export default function Tournament(props: any) {
           <Form onSubmit={submitForm}>
             <Form.Group>
               <Form.Control
-              type='text'
-              required={true}
-              placeholder='Enter Tournament Code'
-              ref={(node: any) => {
-                codeNode = node;
-              }}
-            />
+                type='text'
+                required={true}
+                placeholder='Enter Tournament Code'
+                ref={(node: any) => {
+                  codeNode = node;
+                }}
+              />
             </Form.Group>
             {codeIncorrect && (
               <Form.Text className='text-danger'>
@@ -108,6 +112,7 @@ export default function Tournament(props: any) {
           <ToggleUser
             tournamentId={id}
             userIsRegistered={tournament.userIsRegistered}
+            isOpen={tournament.statusDisplay === 'Open'}
           />
         </Col>
         <Col xs='6'>
@@ -116,7 +121,9 @@ export default function Tournament(props: any) {
         </Col>
       </Row>
       <hr />
-      {tournament.canEdit && tournament.statusDisplay === 'Open' ? (
+      {tournament.canEdit &&
+      tournament.statusDisplay === 'Open' &&
+      tournament.registeredUsers.edges.length !== 0 ? (
         <SeedBracket id={id} />
       ) : null}
       <TournamentBracket bracket={tournament.matchBracket} />

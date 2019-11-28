@@ -22,6 +22,7 @@ export const CoreContext = React.createContext(null);
 export default function Routes(props: any) {
   const { loading, error, data } = useQuery(ME_QUERY);
   let user: any;
+  console.log(loading, error, data);
 
   if (loading) {
     return <Loader />;

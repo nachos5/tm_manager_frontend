@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { extractIntFromId } from '../../../config/utils';
 
 interface Props {
@@ -8,12 +7,11 @@ interface Props {
 
 export default function UserList(props: Props) {
   const { users } = props;
-
   if (users.length === 0)
     return <p>No users have registered for this tournament.</p>;
 
   return (
-    <ol id='tournament-userlist'>
+    <ol id="tournament-userlist">
       {users.map((user: any, i: number) => {
         return (
           <li key={i}>
