@@ -4,10 +4,10 @@
   * https://github.com/nachos5/tm_manager_backend
 * **Trello**
   * https://trello.com/b/qrljEtcc/tm-manager
-* **Heroku síður** (frí dynos svo gæti verið lengi að initialize-ast):
-  * bakendi:
-    * https://tmmanagerbackend.herokuapp.com/graphql
-  * framendi:
+* **Heroku síður** (Using free dynos so be patient):
+  * Backend:
+    * https://tmmanagerbackend.herokuapp.com
+  * Frontend:
     * https://tmmanagerfrontend.herokuapp.com
 
 # Requirements
