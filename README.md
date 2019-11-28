@@ -1,28 +1,45 @@
-*Backend repo* - https://github.com/nachos5/tm_manager_backend
+# Info
 
-*Trello* - https://trello.com/b/qrljEtcc/tm-manager
+* **Backend repo**
+  * https://github.com/nachos5/tm_manager_backend
+* **Trello**
+  * https://trello.com/b/qrljEtcc/tm-manager
+* **Heroku síður** (Using free dynos so be patient):
+  * Backend:
+    * https://tmmanagerbackend.herokuapp.com
+  * Frontend:
+    * https://tmmanagerfrontend.herokuapp.com
 
-*Heroku síður* (frí dynos svo gæti verið lengi að initialize-ast):
+# Requirements
+  * **Nodejs** and **npm**
+    * https://nodejs.org/en/download/
 
-* bakendi: https://tmmanagerbackend.herokuapp.com/graphql
+# Setup
 
-* framendi: https://tmmanagerfrontend.herokuapp.com
+* The backend server needs to be running for so the frontend can communicate with it, check https://github.com/nachos5/tm_manager_backend
+
+## Install
+
+1. Install packages
+```
+npm install
+```
+2. Make a **.env.local** file with the following
+```
+echo "REACT_APP_PAGINATE=20" > .env.local
+```
+
+## Start
+
+1. Run the server
+```
+npm start
+```
 
 ---
-
-Búiði til .env.local file í rootinu, eina sem ég er að nota þar eins og er:
-
-REACT_APP_PAGINATE = 20
-
-Þurfið að runa backend servernum (Django) og þessum (React) development server til að þetta virki.
-
-Eina sem er í rauninni nýtt síðan úr vefforritun 2 er graphql dótið, react-apollo er notað til að tengjast við API-inn og framkvæma queries. Tékkiði bara componentana sem ég er búinn að setja upp. Skilgreini query-in í queries.tsx file-um og svo nota ég useQuery og useMutation hookana til að runa þeim.
-
 ---
 
-
-
-
+## Extra 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
