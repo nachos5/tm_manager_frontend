@@ -27,9 +27,9 @@ export default function Routes(props: any) {
     return <Loader />;
   }
 
-  if (data.me === null || error) {
+  if (!data || error || data.me === null) {
     user = null;
-    // ef útrunnið token
+    // útrunnið token
     localStorage.removeItem('token');
   } else {
     user = data.me;
