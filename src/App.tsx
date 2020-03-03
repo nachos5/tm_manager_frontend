@@ -23,17 +23,6 @@ const client = new ApolloClient({
       }
     });
   }
-  // onError: ({ graphQLErrors, networkError }) => {
-  //   if (graphQLErrors) {
-  //     console.error(graphQLErrors);
-  //   }
-  //   // logga út
-  //   if (networkError) {
-  //     localStorage.removeItem('token');
-  //     // @ts-ignore
-  //     window.location = '/';
-  //   }
-  // }
 });
 
 function App() {

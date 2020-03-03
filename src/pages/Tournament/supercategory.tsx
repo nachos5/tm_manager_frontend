@@ -49,7 +49,7 @@ export default function TournamentSuperCategoryPage(props: any) {
         <Link to={createHref}>
           <div className='w-100 my-3 d-flex justify-content-center'>
             <Button>
-              Create new tournament
+              Create a new tournament
             </Button>
           </div>
         </Link>

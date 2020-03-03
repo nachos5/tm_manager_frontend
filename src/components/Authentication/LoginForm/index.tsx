@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useMutation } from '@apollo/react-hooks';
 import { Form, Button } from 'react-bootstrap';
 
@@ -16,7 +17,6 @@ export default function LoginForm(props: any) {
     })
       .then((data: any) => {
         const { token } = data.data.tokenCreate;
-        // console.info(token);
         localStorage.setItem('token', token);
         window.location.href = '/';
       })
@@ -29,31 +29,34 @@ export default function LoginForm(props: any) {
   }
 
   return (
-    <Form onSubmit={submitForm}>
-      <Form.Group controlId='username'>
-        <Form.Label>Username</Form.Label>
-        <Form.Control
-          type='text'
-          placeholder='Enter username'
-          ref={(node: any) => {
-            username = node;
-          }}
-        />
-      </Form.Group>
+    <>
+      <Form className="mb-3" onSubmit={submitForm}>
+        <Form.Group controlId='username'>
+          <Form.Label>Username</Form.Label>
+          <Form.Control
+            type='text'
+            placeholder='Enter username'
+            ref={(node: any) => {
+              username = node;
+            }}
+          />
+        </Form.Group>
 
-      <Form.Group controlId='password'>
-        <Form.Label>Password</Form.Label>
-        <Form.Control
-          type='password'
-          placeholder='Password'
-          ref={(node: any) => {
-            password = node;
-          }}
-        />
-      </Form.Group>
-      <Button variant='primary' type='submit'>
-        Submit
-      </Button>
-    </Form>
+        <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            type='password'
+            placeholder='Password'
+            ref={(node: any) => {
+              password = node;
+            }}
+          />
+        </Form.Group>
+        <Button variant='primary' type='submit'>
+          Submit
+        </Button>
+      </Form>
+      <Link to="/signup">Don't have an account yet? Press here to create one!</Link>
+    </>
   );
 }

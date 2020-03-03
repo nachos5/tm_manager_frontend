@@ -7,39 +7,8 @@ export const USER_QUERY = gql`
       username
       email
       name
-    }
-  }
-`;
-
-export const USER_TOURNAMENT = gql`
-  query User($id: ID!) {
-    user(id: $id) {
-      id
-      username
-      tournaments {
-        edges {
-          node {
-            id
-            name
-            category {
-              id
-              name
-            }
-          }
-        }
-      }
-      createdTournaments {
-        edges {
-          node {
-            id
-            name
-            category {
-              id
-              name
-            }
-          }
-        }
-      }
+      matchesWonCount
+      tournamentsWonCount
     }
   }
 `;

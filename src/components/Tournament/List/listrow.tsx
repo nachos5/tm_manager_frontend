@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import { Button } from 'react-bootstrap';
 import classNames from 'classnames';
 
 import { Tournament } from '../types';
@@ -12,11 +11,11 @@ interface Props {
 
 export default function TournamentListRow(props: Props) {
   const { tournament } = props;
-  const idInt = extractIntFromId(tournament.node.id);
+  const { code } = tournament.node;
   const history = useHistory();
 
   function handleClick(e: any) {
-    history.push(`/tournament/${idInt}`);
+    history.push(`/tournament/${code}`);
   }
 
   const full =
@@ -28,7 +27,7 @@ export default function TournamentListRow(props: Props) {
 
   return (
     <tr onClick={handleClick} style={{ cursor: 'pointer' }}>
-      <td>{idInt}</td>
+      <td>{extractIntFromId(tournament.node.id)}</td>
       <td>{tournament.node.category.name}</td>
       <td>{tournament.node.name}</td>
       <td>{tournament.node.creator.username}</td>

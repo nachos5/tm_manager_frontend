@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Col, Row } from 'react-bootstrap';
 import { Bracket, BracketGame } from 'react-tournament-bracket';
 
 import { MATCH_COMPLETE_MUTATION } from '../queries';
@@ -35,7 +35,7 @@ export default function TournamentBracket(props: any) {
 
   const [showModal, setShowModal] = useState(false);
   const handleCloseModal = () => setShowModal(false);
-  const handleShowModal = () => setShowModal(true);
+  // const handleShowModal = () => setShowModal(true);
 
   const [matchCompleteMutation] = useMutation(MATCH_COMPLETE_MUTATION);
   const [gameIdState, setGameIdState] = useState(null);
@@ -80,27 +80,31 @@ export default function TournamentBracket(props: any) {
           <Modal.Header closeButton>
             <Modal.Title>Match results</Modal.Title>
           </Modal.Header>
-          <Modal.Body>
-            <p>
-              {homeState}:{' '}
-              <input
-                type='number'
-                ref={(node: any) => {
-                  homeScore = node;
-                }}
-                required={true}
-              />
-            </p>
-            <p>
-              {visitorState}:{' '}
-              <input
-                type='number'
-                ref={(node: any) => {
-                  visitorScore = node;
-                }}
-                required={true}
-              />
-            </p>
+          <Modal.Body className="d-flex flex-column align-items-center justify-content-center">
+            <Col className="mb-2" xs="6">
+              <Col xs="6">{homeState}:</Col>
+              <Col xs="6">
+                <input
+                  type='number'
+                  ref={(node: any) => {
+                    homeScore = node;
+                  }}
+                  required={true}
+                />
+              </Col>
+            </Col>
+            <Col xs="6">
+              <Col xs="6">{visitorState}:</Col>
+              <Col xs="6">
+                <input
+                  type='number'
+                  ref={(node: any) => {
+                    visitorScore = node;
+                  }}
+                  required={true}
+                />
+              </Col>
+            </Col>
           </Modal.Body>
           <Modal.Footer>
             <Button variant='secondary' onClick={handleCloseModal}>

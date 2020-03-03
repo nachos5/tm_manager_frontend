@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Col, Row } from 'react-bootstrap';
 
@@ -7,7 +6,8 @@ import { TOURNAMENT_QUERY } from '../queries';
 
 import Loader from '../../Utils/Loader';
 import QueryError from '../../Utils/QueryError';
-import MutationFieldError from '../../Utils/MutationFieldError';
+// import MutationFieldError from '../../Utils/MutationFieldError';
+import { extractIntFromId } from '../../../config/utils';
 
 import TournamentAttributes from './attributes';
 import UserList from './userlist';
@@ -15,22 +15,16 @@ import TournamentBracket from './bracket';
 import ToggleUser from './toggleuser';
 import SeedBracket from './seedbracket';
 
-import { CoreContext } from '../../../Routes';
-
 import './styles.scss';
 
 interface Props {
-  id: number;
+  code: string;
 }
 
 export default function Tournament(props: any) {
-  const context: any = useContext(CoreContext);
-  const [isAllowed, setIsAllowed] = useState<boolean>(false);
-  const [codeIncorrect, setCodeIncorrect] = useState<boolean>(false);
-
-  const { id } = props;
+  const { code } = props;
   const { loading, error, data } = useQuery(TOURNAMENT_QUERY, {
-    variables: { id }
+    variables: { code }
   });
 
   if (loading) {
@@ -38,70 +32,11 @@ export default function Tournament(props: any) {
   }
 
   if (error) {
-    return <QueryError />;
+    return <QueryError message={code ? 'Invalid Code' : ''} />;
   }
 
   const { tournament } = data;
-  const registeredUsers = tournament.registeredUsers.edges;
-
-  let codeNode: any;
-
-  function submitForm(e: any) {
-    e.preventDefault();
-
-    const code = codeNode.value ? codeNode.value : null;
-
-    if (code === tournament.code) {
-      setIsAllowed(true);
-    } else {
-      setCodeIncorrect(true);
-    }
-  }
-
-  if (tournament.private && !isAllowed) {
-    const creatorID = tournament.creator.id;
-    const userID = context.user ? context.user.id : null;
-
-    const registeredIDs = registeredUsers.map((t: any) => {
-      return t.node.id;
-    });
-
-    if (
-      userID === creatorID ||
-      tournament.canEdit ||
-      registeredIDs.includes(userID)
-    ) {
-      setIsAllowed(true);
-    }
-
-    if (!isAllowed) {
-      return (
-        <div>
-          <h3>Please enter the tournament code to continue:</h3>
-          <Form onSubmit={submitForm}>
-            <Form.Group>
-              <Form.Control
-                type='text'
-                required={true}
-                placeholder='Enter Tournament Code'
-                ref={(node: any) => {
-                  codeNode = node;
-                }}
-              />
-            </Form.Group>
-            {codeIncorrect && (
-              <Form.Text className='text-danger'>
-                The entered code is incorrect
-              </Form.Text>
-            )}
-            <Button variant='primary' type='submit'>
-              Submit
-            </Button>
-          </Form>
-        </div>
-      );
-    }
-  }
+  const id = extractIntFromId(tournament.id);
 
   return (
     <div>

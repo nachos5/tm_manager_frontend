@@ -1,8 +1,8 @@
 import { gql } from 'apollo-boost';
 
 export const TOURNAMENT_QUERY = gql`
-  query Tournament($id: ID) {
-    tournament(id: $id) {
+  query Tournament($code: String) {
+    tournament(code: $code) {
       id
       name
       creator {
@@ -51,6 +51,8 @@ export const PUBLIC_TOURNAMENTS_LIST = gql`
     $name: String
     $statuses: String
     $categories: String
+    $creator: Float
+    $registeredIn: Float
   ) {
     tournaments(
       first: $first
@@ -59,6 +61,8 @@ export const PUBLIC_TOURNAMENTS_LIST = gql`
       name_Icontains: $name
       status_In: $statuses
       category_Name_In: $categories
+      creator: $creator
+      registeredIn: $registeredIn
     ) {
       pageInfo {
         endCursor
@@ -83,6 +87,7 @@ export const PUBLIC_TOURNAMENTS_LIST = gql`
             id
             username
           }
+          code
         }
       }
     }

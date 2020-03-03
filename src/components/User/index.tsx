@@ -1,9 +1,10 @@
-import React, { Fragment } from 'react';
-import { Card } from 'react-bootstrap';
-import Tournament from '../User/tournaments';
+import React, { useContext } from 'react';
 import { useQuery } from '@apollo/react-hooks';
 
+import { CoreContext } from '../../Routes'
 import { USER_QUERY } from './queries';
+import TournamentList from '../Tournament/List';
+import UserCard from './usercard';
 
 import Loader from '../Utils/Loader';
 import QueryError from '../Utils/QueryError';
@@ -14,7 +15,10 @@ interface Props {
 }
 
 export default function User(props: Props) {
-  const { id, className } = props;
+  const context: any = useContext(CoreContext);
+  const me = context.user;
+
+  const { id } = props;
   const { loading, error, data } = useQuery(USER_QUERY, {
     variables: { id }
   });
@@ -30,24 +34,12 @@ export default function User(props: Props) {
   const { user } = data;
 
   return (
-    <Fragment>
-      <Card
-        border="primary"
-        className={className ? className : ''}
-        style={{ width: '18rem' }}
-      >
-        <Card.Header className="text-center">Usercard</Card.Header>
-        <Card.Body>
-          <Card.Title className="text-center">{user.username}</Card.Title>
-          <div>
-            <ul>
-              <li>Name: {user.name ? user.name : user.username}</li>
-              <li>Email: {user.email ? user.email : 'no email'}</li>
-            </ul>
-          </div>
-        </Card.Body>
-      </Card>
-      <Tournament id={id} />
-    </Fragment>
+    <>
+      <UserCard {...props} user={user} />
+      <p className="mt-5"><b>Tournaments created by {me.id === user.id ? 'me' : user.username}:</b></p>
+      <TournamentList creatorFilter={id} />
+      <p className="mt-5"><b>{me.id === user.id ? 'I am/have' : `${user.username} is/has`} participated in the following tournaments:</b></p>
+      <TournamentList registeredInFilter={id} />
+    </>
   );
 }

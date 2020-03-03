@@ -1,6 +1,7 @@
 export interface Tournament {
   node: {
     id: string;
+    idInt: number;
     name: string;
     category: {
       id: string;
@@ -17,5 +18,6 @@ export interface Tournament {
       id: string;
       username: string;
     }
+    code: string;
   }
 }

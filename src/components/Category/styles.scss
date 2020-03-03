@@ -4,7 +4,7 @@
   cursor: pointer;
 
   &__container {
-    height: 250px;
+    height: 350px;
     background-color: $light-gray;
     filter: contrast(80%);
   }
@@ -15,7 +15,8 @@
     left: 50%;
     transform: translate(-50%,-50%);
     
-    background-color: rgba(black, .1);
+    color: white;
+    background-color: rgba(black, .4);
     text-align: center;
     width: 80%;
     padding: 4px;

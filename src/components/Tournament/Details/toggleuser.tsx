@@ -5,7 +5,6 @@ import { Button } from 'react-bootstrap';
 import { TOGGLE_USER_TOURNAMENT_MUTATION } from '../queries';
 
 import Loader from '../../Utils/Loader';
-import { BooleanTypeAnnotation } from '@babel/types';
 
 interface Props {
   tournamentId: number;

@@ -15,14 +15,16 @@ const paginate: number =
     : 20;
 
 interface Props {
-  superCategory: number;
-  nameFilter: string;
-  statusFilter: string;
-  categoryFilter: string;
+  superCategory?: number;
+  nameFilter?: string;
+  statusFilter?: string;
+  categoryFilter?: string;
+  creatorFilter?: number;
+  registeredInFilter?: number;
 }
 
 export default function TournamentList(props: Props) {
-  const { superCategory, nameFilter, statusFilter, categoryFilter } = props;
+  const { superCategory, nameFilter, statusFilter, categoryFilter, creatorFilter, registeredInFilter } = props;
   const [currCount, setCurrCount] = useState(paginate);
   const { loading, error, data, fetchMore } = useQuery(
     PUBLIC_TOURNAMENTS_LIST,
@@ -30,10 +32,12 @@ export default function TournamentList(props: Props) {
       variables: {
         first: paginate,
         after: '',
-        superCategory,
-        name: nameFilter,
-        statuses: statusFilter,
-        categories: categoryFilter
+        superCategory: superCategory ? superCategory : null,
+        name: nameFilter ? nameFilter : '',
+        statuses: statusFilter ? statusFilter : '',
+        categories: categoryFilter ? categoryFilter : '',
+        creator: creatorFilter ? creatorFilter : null,
+        registeredIn: registeredInFilter ? registeredInFilter : null,
       }
     }
   );
@@ -77,17 +81,17 @@ export default function TournamentList(props: Props) {
 
   const tournaments: Tournament[] = data.tournaments.edges;
   const totalCount: number = data.tournaments.totalCount;
+
+  if (totalCount === 0) {
+    return <p>List is empty</p>;
+  }
+
   if (totalCount < currCount) {
     setCurrCount(totalCount);
   }
-
+  
   return (
     <>
-      {/*
-      <p>
-        Showing {currCount} out of {totalCount} tournaments
-      </p>
-      */}
       <Table striped bordered hover responsive>
         <thead>
           <tr>

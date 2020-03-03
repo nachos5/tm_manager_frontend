@@ -9,7 +9,7 @@ export default function UserProfile(props: any) {
 
   return (
     <Base>
-      <User id={id} className='m-auto' />
+      <User id={id} className='col-12 col-md-6 m-auto p-0' />
     </Base>
   );
 }

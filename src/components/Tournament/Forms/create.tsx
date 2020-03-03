@@ -56,9 +56,7 @@ export default function CreateNewTournamentForm(props: Props) {
     const isPrivate = privateNode.checked ? privateNode.checked : null;
     const location = locationNode.value ? locationNode.value : null;
     const date = dateNode.value ? dateNode.value : null;
-    const time = timeNode.value ? timeNode.value : null;
-
-    console.info(date, time);
+    const time = timeNode.value ? timeNode.value : null; 
 
     // mutate-a
     createTournamentMutation({

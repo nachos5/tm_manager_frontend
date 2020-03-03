@@ -1,7 +1,17 @@
 import React from 'react';
 
-export default function QueryError(props: any) {
+interface Props {
+  message?: string;
+}
+
+export default function QueryError(props: Props) {
+  const { message } = props;
+
+  if (message) {
+    return <h2 className="text-center">{message}</h2>
+  }
+
   return (
-    <h2>Internal Error!</h2>
+    <h2 className="text-center">Internal Error!</h2>
   )
 }

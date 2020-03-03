@@ -9,6 +9,7 @@ import Base from '../Base';
 import Loader from '../../components/Utils/Loader';
 import QueryError from '../../components/Utils/QueryError';
 import SuperCategoryBox from '../../components/Category/superbox';
+import SearchByCode from '../../components/Tournament/Utils/searchbycode';
 
 interface Props {
   tournamentFormRedirect?: boolean;
@@ -29,6 +30,11 @@ export default function Home(props: Props) {
 
   return (
     <Base>
+      <Row className="mb-5 justify-content-center">
+        <Col xs="12" md="6" xl="4">
+          <SearchByCode {...props} />
+        </Col>
+      </Row>
       <Row>
         {superCategories.map((c: any, i: number) => {
           return (

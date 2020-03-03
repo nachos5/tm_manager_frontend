@@ -9,10 +9,9 @@ import './styles.scss';
 
 export default function Header(props: any) {
   const context: any = useContext(CoreContext);
-  console.log('context.user: ' + !context.user);
-
+  
   return (
-    <Navbar id="header" bg="light" expand="lg">
+    <Navbar className="shadow-sm" id="header" bg="light" expand="lg">
       <Row className="w-100">
         <Col xs="8" className="brand d-flex align-items-center">
           <Link to="/">Tournament Manager</Link>

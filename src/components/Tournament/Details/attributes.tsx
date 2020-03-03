@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { extractIntFromId } from '../../../config/utils';
-import { Button } from 'react-bootstrap';
 
 interface Props {
   tournament: any;
@@ -12,6 +11,11 @@ export default function TournamentAttributes(props: Props) {
 
   return (
     <ul id='tournament-attributes'>
+      {tournament.code ? (
+        <li>
+          <b>Code</b>: {tournament.code}
+        </li>
+      ) : null}
       <li>
         <b>Host</b>:{' '}
         <a href={`/user/${extractIntFromId(tournament.creator.id)}`}>
@@ -34,7 +38,7 @@ export default function TournamentAttributes(props: Props) {
         <b>Time</b>: {tournament.time}
       </li>
       <li>
-        <b>Private</b>: {tournament.private.toString()}
+        <b>Private</b>: {tournament.private ? 'yes' : 'no'}
       </li>
       <li>
         <b>Status</b>:{' '}
