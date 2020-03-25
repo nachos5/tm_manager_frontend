@@ -11,6 +11,8 @@ export default function LoginForm(props: any) {
 
   const [signupMutation] = useMutation(SIGNUP_MUTATION);
   let username: any;
+  let email: any;
+  let name: any;
   let password1: any;
   let password2: any;
 
@@ -19,6 +21,8 @@ export default function LoginForm(props: any) {
     signupMutation({
       variables: {
         username: username.value,
+        email: email.value,
+        name: name.value,
         password1: password1.value,
         password2: password2.value
       }
@@ -51,6 +55,30 @@ export default function LoginForm(props: any) {
           }}
         />
         <MutationFieldError errors={fieldErrors} field='username' />
+      </Form.Group>
+
+      <Form.Group controlId='username'>
+        <Form.Label>Email</Form.Label>
+        <Form.Control
+          type='email'
+          placeholder='Enter email'
+          ref={(node: any) => {
+            email = node;
+          }}
+        />
+        <MutationFieldError errors={fieldErrors} field='email' />
+      </Form.Group>
+
+      <Form.Group controlId='name'>
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type='text'
+          placeholder='Enter name'
+          ref={(node: any) => {
+            name = node;
+          }}
+        />
+        <MutationFieldError errors={fieldErrors} field='name' />
       </Form.Group>
 
       <Form.Group controlId='password1'>
